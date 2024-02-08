@@ -4,20 +4,24 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class MainActivity extends AppCompatActivity {
+import javax.inject.Inject;
 
-    private Kargo kargo;
-    private Internet internet;
+public class MainActivity extends AppCompatActivity {
+    @Inject
+    Kargo kargo;
+    @Inject
+    Internet internet;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        DaggerAppComponent.builder().build().inject(this);
 
-        kargo=new Kargo();
+        //kargo=new Kargo();
         kargo.gonder();
 
-        internet=new Internet();
+        //internet=new Internet();
         internet.basvuruYap();
     }
 }
